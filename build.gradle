@@ -1,0 +1,62 @@
+// Minecraft Forge 1.8.9 uses the original ForgeGradle 2.1 toolchain.
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url = "https://maven.minecraftforge.net/" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = "2.0.0"
+group = "dev.lunarlite"
+archivesBaseName = "ZhwiiClient-1.8.9"
+
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+    options.encoding = 'UTF-8'
+}
+
+minecraft {
+    version = "1.8.9-11.15.1.2318-1.8.9"
+    runDir = "run"
+    mappings = "stable_22"
+    makeObfSourceJar = false
+}
+
+repositories {
+    mavenCentral()
+}
+
+// JLayer (giải mã MP3 cho Music Player trên Android/Linux/macOS) được đóng gói thẳng vào jar của mod.
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
+dependencies {
+    shade 'com.googlecode.soundlibs:jlayer:1.0.1.4'
+}
+
+jar {
+    from({ configurations.shade.collect { it.isDirectory() ? it : zipTree(it) } }) {
+        exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+    }
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
