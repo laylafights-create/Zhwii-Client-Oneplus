@@ -710,8 +710,8 @@ public class MenuScreen extends GuiScreen {
         }
         float a = on ? 1f : 0f;
         int off = Draw.lerp(0x55556678, 0x77556678, hov);
-        int on = Draw.lerp(accent(), accentHi(), hov);
-        Draw.rrect(x, y, x + w, y + h, h / 2, Draw.lerp(off, on, a));
+        int onC = Draw.lerp(accent(), accentHi(), hov);
+        Draw.rrect(x, y, x + w, y + h, h / 2, Draw.lerp(off, onC, a));
         rring(x, y, w, h, h / 2, 0x55FFFFFF);
         int kd = h - 4;
         int kx = x + 2 + Math.round((w - kd - 4) * a);
