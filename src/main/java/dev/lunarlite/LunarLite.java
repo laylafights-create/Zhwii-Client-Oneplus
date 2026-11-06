@@ -356,7 +356,7 @@ public class LunarLite {
         playNearbyDeaths(mc);
 
         if (keyMenu.isPressed() && mc.currentScreen == null) {
-            mc.displayGuiScreen(new MenuScreen());
+            mc.displayGuiScreen(new dev.lunarlite.gui.ModsScreen(null));
         }
         if (keyAim.isPressed() && mc.currentScreen == null) {
             AIM.toggle();
