@@ -710,8 +710,8 @@ public class MenuScreen extends GuiScreen {
         }
         float a = on ? 1f : 0f;
         int off = Draw.lerp(0x55556678, 0x77556678, hov);
-        int onC = Draw.lerp(accent(), accentHi(), hov);
-        Draw.rrect(x, y, x + w, y + h, h / 2, Draw.lerp(off, onC, a));
+        int on = Draw.lerp(accent(), accentHi(), hov);
+        Draw.rrect(x, y, x + w, y + h, h / 2, Draw.lerp(off, on, a));
         rring(x, y, w, h, h / 2, 0x55FFFFFF);
         int kd = h - 4;
         int kx = x + 2 + Math.round((w - kd - 4) * a);
@@ -1389,6 +1389,10 @@ public class MenuScreen extends GuiScreen {
         String key = hit(mx, my);
         if (btn == 1) { // chuột phải: bật / tắt thẻ, hoặc đổi chế độ lùi lại
             if (key != null) perform(key, true);
+            return;
+        }
+        if (btn == 2 && module != null) { // chuột giữa: mở màn cài đặt module kiểu tối
+            mc.displayGuiScreen(new ModuleSettingsScreen(module, this));
             return;
         }
         if (btn != 0) return;
