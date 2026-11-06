@@ -409,6 +409,7 @@ public class LunarLite {
 
     @SubscribeEvent
     public void onGuiOpen(GuiOpenEvent e) {
+        if (e.gui instanceof net.minecraft.client.gui.GuiMainMenu) e.gui = new dev.lunarlite.gui.MainMenuScreen();
         if (cleanInv && e.gui != null) e.gui = dev.lunarlite.gui.CleanGuis.wrap(e.gui);
         AnimationsModule.guiOpened(e.gui);
     }
