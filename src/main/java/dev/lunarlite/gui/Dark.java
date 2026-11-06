@@ -10,7 +10,7 @@ public final class Dark {
     private Dark() {}
 
     // Màu kiểu Lunar Client: nền xám đen mờ, nút xám, nhấn xanh dương, ENABLED xanh lá / DISABLED đỏ.
-    public static final int BG = 0xB0181818, BTN = 0x78404040, BTN_HOV = 0x90565656;
+    public static final int BG = 0xB0181818, BTN = 0x90505050, BTN_HOV = 0xA8686868;
     public static final int PRIMARY = 0xFF4A7BD0, PRIMARY_HOV = 0xFF6591E6;
     public static final int ACCENT = 0xFF4A7BD0, CHIP_ON = 0xFF3F68B0;
     public static final int GREEN = 0xFF2FA566, RED = 0xFFA82A47;
@@ -40,7 +40,7 @@ public final class Dark {
     public static void button(int x, int y, int w, int h, boolean primary, boolean hov) {
         int c = primary ? (hov ? PRIMARY_HOV : PRIMARY) : (hov ? BTN_HOV : BTN);
         Draw.rrect(x, y, x + w, y + h, 5, c);
-        if (!primary) Draw.ring(x, y, x + w, y + h, 0x14FFFFFF);
+        if (!primary) Draw.ring(x, y, x + w, y + h, 0x55FFFFFF);
     }
 
     /** Thanh ENABLED (xanh lá) / DISABLED (đỏ) kiểu Lunar. */
